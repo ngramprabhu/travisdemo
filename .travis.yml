@@ -20,10 +20,13 @@ jobs:
     - stage: "Build"
       name: "Build"
       script: ng build --prod --base-href https://ngramprabhu.github.io/travisdemo/
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  local_dir: dist/travisdemo
-  on:
-    branch: master
+    - stage: "Deployment"
+      name: "Deploy to GitHub Pages"
+      script: ./deploy
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN
+        local_dir: dist/travisdemo
+        on:
+          branch: master
