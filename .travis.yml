@@ -18,12 +18,13 @@ jobs:
     - script: npm run test-headless
       name: "Unit Tests"         # names the Third Tests stage job
     - stage: "Deployment"
-      name: "Deploy to GitHub Pages"
-      script: ng build --prod --base-href https://ngramprabhu.github.io/travisdemo/
+      name: "Deploy to Netlify"
+      before_deploy:
+        - npm install netlify-cli -g
+        - ng build --prod
       deploy:
-        provider: pages
+        provider: script
+        script: netlify deploy -s $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN -p --dir ./build
         skip_cleanup: true
-        github_token: $GITHUB_TOKEN
-        local_dir: dist/travisdemo
         on:
           branch: master
