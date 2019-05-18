@@ -17,12 +17,9 @@ jobs:
       name: "CSS Style Lint"     # names the second Tests stage job
     - script: npm run test-headless
       name: "Unit Tests"         # names the Third Tests stage job
-    - stage: "Build"
-      name: "Build"
-      script: ng build --prod --base-href https://ngramprabhu.github.io/travisdemo/
     - stage: "Deployment"
       name: "Deploy to GitHub Pages"
-      script: skip
+      script: ng build --prod --base-href https://ngramprabhu.github.io/travisdemo/
       deploy:
         provider: pages
         skip_cleanup: true
