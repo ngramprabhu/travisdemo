@@ -22,7 +22,7 @@ jobs:
       script: ng build --prod --base-href https://ngramprabhu.github.io/travisdemo/
     - stage: "Deployment"
       name: "Deploy to GitHub Pages"
-      script: ./deploy
+      script: skip
       deploy:
         provider: pages
         skip_cleanup: true
